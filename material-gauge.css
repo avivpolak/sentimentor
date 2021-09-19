@@ -43,7 +43,7 @@ textarea{
     font-size: 30px;
 }
 
-#btn{
+div button{
     background-color: coral;
     border:rgba(0, 0, 0, 0.425);
     border-radius: 13px;
@@ -54,7 +54,10 @@ textarea{
     padding: 2% 13%;
 }
 
+.highLighted{
+    background-color: rgb(172, 88, 58);
 
+}
 .gauge {
     position: relative;
 }

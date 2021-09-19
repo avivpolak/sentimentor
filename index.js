@@ -43,7 +43,11 @@ document.getElementById("btn").addEventListener("click", getHttp);
 document.getElementById("btn").addEventListener("mouseenter", highLight);
 
 function highLight(){
-
+    document.getElementById("btn").classList.add("highLighted")
+    document.getElementById("btn").addEventListener("mouseleave", normal);
+}
+function normal(){
+    document.getElementById("btn").classList.remove("highLighted")
 }
 
 // The Gauge object encapsulates the behavior
