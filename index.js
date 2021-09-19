@@ -15,17 +15,15 @@ async function isEven() {
     return res.json();
 }
 
-
-
-
-
-
 async function getHttp() {
     const text = document.getElementById("inputBar").value;
     let result = await sentimator(text);
     displayResultInDom(result);
-    let random =await isEven()
-    document.getElementById("inputBar").value=random.ad
+    
+    if (document.getElementById("toRandom").checked) {
+        let random = await isEven();
+        document.getElementById("inputBar").value = random.ad;
+    }
 }
 
 async function displayResultInDom(result) {
@@ -41,8 +39,12 @@ function getColorFromPolarity(polarity) {
     return `rgb(${r},${g},0)`;
 }
 
-
 document.getElementById("btn").addEventListener("click", getHttp);
+document.getElementById("btn").addEventListener("mouseenter", highLight);
+
+function highLight(){
+
+}
 
 // The Gauge object encapsulates the behavior
 // of simple gauge. Most of the implementation
