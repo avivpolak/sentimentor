@@ -10,6 +10,15 @@
         <title>Document</title>
     </head>
     <body id="body">
+        <h1
+            style="
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+            "
+        >
+            Give me a sentence, and I'll tell you how you feel:
+        </h1>
         <div class="gauge gauge--liveupdate" id="gauge">
             <div class="gauge__container">
                 <div class="gauge__marker"></div>
@@ -19,9 +28,9 @@
                 <div class="gauge__needle"></div>
             </div>
             <div class="gauge__labels mdl-typography__headline">
-                <span class="gauge__label--low">No</span>
+                <span class="gauge__label--low">bad</span>
                 <span class="gauge__label--spacer"></span>
-                <span class="gauge__label--high">Yes</span>
+                <span class="gauge__label--high">good</span>
             </div>
         </div>
         <div
@@ -32,13 +41,23 @@
             "
         >
             <div>
-                <input
+                <span>Enter text here:</span>
+                <label>auto play:</label>
+                <label class="switch">
+                    <input id="autoPlay" type="checkbox" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+                <textarea
                     type="text"
                     id="inputBar"
                     placeholder="your text here!"
-                />
+                >
+                </textarea>
+
                 <button id="btn">send</button>
             </div>
         </div>
+        <h2 id="h2"></h2>
     </body>
 </html>

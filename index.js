@@ -10,18 +10,29 @@ async function sentimator(text) {
     });
     return res.json();
 }
+async function isEven() {
+    let res = await fetch("https://api.isevenapi.xyz/api/iseven/5");
+    return res.json();
+}
+
+
+
+
+
 
 async function getHttp() {
     const text = document.getElementById("inputBar").value;
     let result = await sentimator(text);
     displayResultInDom(result);
+    let random =await isEven()
+    document.getElementById("inputBar").value=random.ad
 }
 
 async function displayResultInDom(result) {
     let body = document.getElementById("body");
     let polarity = (await (result["result"].polarity + 1)) / 2;
     let gauge = new Gauge(document.getElementById("gauge"));
-    // body.style.backgroundColor = getColorFromPolarity(polarity);
+    body.style.backgroundColor = getColorFromPolarity(polarity);
     gauge.value(polarity);
 }
 function getColorFromPolarity(polarity) {
@@ -29,6 +40,7 @@ function getColorFromPolarity(polarity) {
     const g = polarity * 255;
     return `rgb(${r},${g},0)`;
 }
+
 
 document.getElementById("btn").addEventListener("click", getHttp);
 
