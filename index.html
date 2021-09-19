@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <input type="text" id ="inputBar" placeholder="your text here!">
-    <BUtton id="send">send</BUtton>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="index.js" defer></script>
+        <link rel="stylesheet" type="text/css" href="material-gauge.css" />
+
+        <title>Document</title>
+    </head>
+    <body id="body">
+        <div class="gauge gauge--liveupdate" id="gauge">
+            <div class="gauge__container">
+                <div class="gauge__marker"></div>
+                <div class="gauge__background"></div>
+                <div class="gauge__center"></div>
+                <div class="gauge__data"></div>
+                <div class="gauge__needle"></div>
+            </div>
+            <div class="gauge__labels mdl-typography__headline">
+                <span class="gauge__label--low">No</span>
+                <span class="gauge__label--spacer"></span>
+                <span class="gauge__label--high">Yes</span>
+            </div>
+        </div>
+        <div
+            style="
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+            "
+        >
+            <div>
+                <input
+                    type="text"
+                    id="inputBar"
+                    placeholder="your text here!"
+                />
+                <button id="btn">send</button>
+            </div>
+        </div>
+    </body>
 </html>
