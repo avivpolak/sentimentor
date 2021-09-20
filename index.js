@@ -1,3 +1,8 @@
+
+
+inianalizing()
+
+
 async function sentimator(text) {
     let data = { text: text };
     const response = await fetch("https://sentim-api.herokuapp.com/api/v1/", {
@@ -60,6 +65,25 @@ function highLight() {
 function normal() {
     document.getElementById("btn").classList.remove("highLighted");
 }
+function inianalizing(){
+let gauge = new Gauge(document.getElementById("gauge"));
+gauge.value(0.5);
+body.style.backgroundColor = getColorFromPolarity(0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // The Gauge-----> i did not wrote this code
 
@@ -131,7 +155,3 @@ function Gauge(el) {
 
     return exports;
 }
-//inianalizing
-let gauge = new Gauge(document.getElementById("gauge"));
-gauge.value(0.5);
-body.style.backgroundColor = getColorFromPolarity(0.5);
