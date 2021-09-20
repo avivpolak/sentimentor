@@ -1,6 +1,6 @@
 async function sentimator(text) {
     let data = { text: text };
-    let res = await fetch("https://sentim-api.herokuapp.com/api/v1/", {
+    const response = await fetch("https://sentim-api.herokuapp.com/api/v1/", {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -8,7 +8,16 @@ async function sentimator(text) {
         },
         body: JSON.stringify(data),
     });
-    return res.json();
+    if (response.status > 400){
+        document.getElementById("resultBar").innerText =response.status+":"+ response.statusText;
+    }
+    try {
+        const result = await response.json();
+        document.getElementById("resultBar").innerText =result.result.type
+        return result;
+    } catch {
+        return null;
+    }
 }
 async function isEven() {
     let res = await fetch("https://api.isevenapi.xyz/api/iseven/5");
@@ -17,9 +26,10 @@ async function isEven() {
 
 async function getHttp() {
     const text = document.getElementById("inputBar").value;
-    let result = await sentimator(text);
-    displayResultInDom(result);
-    
+    const result = await sentimator(text);
+    if (result !== null) {
+        displayResultInDom(result);
+    }
     if (document.getElementById("toRandom").checked) {
         let random = await isEven();
         document.getElementById("inputBar").value = random.ad;
@@ -33,30 +43,28 @@ async function displayResultInDom(result) {
     body.style.backgroundColor = getColorFromPolarity(polarity);
     gauge.value(polarity);
 }
-function getColorFromPolarity(polarity) {
+function getColorFromPolarity(polarity) { //polatiry is a number between 0-1.
     const r = (1 - polarity) * 255;
     const g = polarity * 255;
-    return `rgb(${r},${g},0)`;
+    const b = -0.0093 * g * g + 2.36 * g; // this is a parabula , b(g), that have 3 known points.{0(0),150(127.5),0(255)}
+    return `rgb(${r},${g},${b})`;
 }
 
 document.getElementById("btn").addEventListener("click", getHttp);
 document.getElementById("btn").addEventListener("mouseenter", highLight);
 
-function highLight(){
-    document.getElementById("btn").classList.add("highLighted")
+function highLight() {
+    document.getElementById("btn").classList.add("highLighted");
     document.getElementById("btn").addEventListener("mouseleave", normal);
 }
-function normal(){
-    document.getElementById("btn").classList.remove("highLighted")
+function normal() {
+    document.getElementById("btn").classList.remove("highLighted");
 }
 
-// The Gauge object encapsulates the behavior
-// of simple gauge. Most of the implementation
-// is in the CSS rules, but we do have a bit
-// of JavaScript to set or read the gauge value
+// The Gauge-----> i did not wrote this code
 
 function Gauge(el) {
-    // ##### Private Properties and Attributes
+    //Private Properties and Attributes
 
     let element, // Containing element for the info component
         data, // `.gauge__data` element
@@ -64,7 +72,7 @@ function Gauge(el) {
         value = 0.0, // Current gauge value from 0 to 1
         prop; // Style for transform
 
-    // ##### Private Methods and Functions
+    //Private Methods and Functions
 
     let setElement = function (el) {
         // Keep a reference to the various elements and sub-elements
@@ -80,11 +88,11 @@ function Gauge(el) {
         needle.style[prop] = "rotate(" + turns + "turn)";
     };
 
-    // ##### Object to be Returned
+    //Object to be Returned
 
     function exports() {}
 
-    // ##### Public API Methods
+    //Public API Methods
 
     exports.element = function (el) {
         if (!arguments.length) {
@@ -102,7 +110,7 @@ function Gauge(el) {
         return this;
     };
 
-    // ##### Initialization
+    //nitialization
 
     let body = document.getElementsByTagName("body")[0];
     [
@@ -123,6 +131,7 @@ function Gauge(el) {
 
     return exports;
 }
-
+//inianalizing
 let gauge = new Gauge(document.getElementById("gauge"));
-gauge.value(0.75);
+gauge.value(0.5);
+body.style.backgroundColor = getColorFromPolarity(0.5);

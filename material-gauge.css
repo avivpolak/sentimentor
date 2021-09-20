@@ -1,30 +1,3 @@
-/*
- * #### Gauge Component
- *
- * The standard markup for the component is:
- *
- *      <div class="gauge">
- *          <div class="gauge__container">
- *              <div class="gauge__marker"></div>
- *              <div class="gauge__background"></div>
- *              <div class="gauge__center"></div>
- *              <div class="gauge__data"></div>
- *              <div class="gauge__needle"></div>
- *          </div>
- *          <div class="gauge__labels">
- *              <span class="gauge__label--low">No</span>
- *              <span class="gauge__label--spacer"></span>
- *              <span class="gauge__label--high">Yes</span>
- *          </div>
- *      </div>
- */
-
-/*
- * First define all of the relevant rules that aren't dependent
- * on the size of the gauge. We want to collect the size-depenent
- * rules in one place to make it easier to adjust the size.
- */
-
 body {
     color: rgba(0, 0, 0, 0.425);
     font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -37,27 +10,29 @@ body {
     background-color: rgba(255, 255, 255, 0);
     transition: background-color 5s;
 }
-textarea{
+textarea {
     width: 600px;
     height: 150px;
     font-size: 30px;
 }
 
-div button{
+div button {
     background-color: coral;
-    border:rgba(0, 0, 0, 0.425);
+    border: rgba(0, 0, 0, 0.425);
     border-radius: 13px;
+    border-style: solid;
     border-width: 3px;
-    position: absolute;
-    left:35.5%;
+    width: 600px;
     font-size: 30px;
     padding: 2% 13%;
 }
 
-.highLighted{
+.highLighted {
     background-color: rgb(172, 88, 58);
-
 }
+
+/* GAUGE   (I DIDNT WROTE THAT CODE)*/
+
 .gauge {
     position: relative;
 }
@@ -145,12 +120,6 @@ div button{
     text-align: center;
 }
 
-/*
- * Now define the rules that depend on the size of
- * the gauge. We start with sizing for a small mobile
- * device.
- */
-
 .gauge {
     height: calc(120px + 3em);
 }
@@ -194,10 +163,6 @@ div button{
 .gauge__label--high {
     width: 48px;
 }
-
-/*
- * Increase the gauge size slightly on larger viewports.
- */
 
 @media only screen and (min-width: 400px) {
     .gauge {
@@ -245,18 +210,6 @@ div button{
     }
 }
 
-/*
- * As an option, the `gauge--liveupdate` class can be added
- * to the main gauge element. When this class is present,
- * we add a transition that animates any changes to the gauge
- * value. Currently, the app does not use this option because
- * all the inputs that can change gauge values are present
- * on tab panels that are different from the gauge itself.
- * Therefore, users won't be able to see any gauge changes
- * when they make input changes. The code is available, though,
- * should this change.
- */
-
 .gauge--liveupdate .gauge__data,
 .gauge--liveupdate .gauge__needle {
     -webkit-transition: all 5s ease-in-out;
@@ -288,26 +241,23 @@ div button{
     transform: rotate(-0.5turn);
 }
 
-
-
-
-/* The switch - the box around the slider */
+/* THE SWITCH (ALSO A DIDNT WROTE THIS CODE)  */
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+}
+
+/* HIDE DEFAULT HTML CHECKBOX */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider */
-  .slider {
+}
+
+/* THE SLIDER */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -315,11 +265,11 @@ div button{
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -327,29 +277,29 @@ div button{
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+/* ROUNDED SLIDERS */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
