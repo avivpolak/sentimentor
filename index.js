@@ -1,6 +1,35 @@
-inianalizing();
+"use strict";
+nitialization();
+document.getElementById("btn").addEventListener("click", getHttp);
+document.getElementById("btn").addEventListener("mouseenter", highLight);
+
+async function getHttp() {
+    //the main controling function.
+    //actived by send button click event.
+
+    toogleLoadingPage();
+    const text = document.getElementById("inputBar").value;
+    const result = await sentimator(text);
+    if (result !== null) {
+        displayResultInDom(text, result);
+    }
+    if (document.getElementById("toRandom").checked) {
+        const random = await randomSentence();
+        if (random !== null) {
+            document.getElementById("inputBar").value = random.ad;
+        }
+    }
+    toogleLoadingPage();
+}
 
 async function sentimator(text) {
+    //PARAMETER: text input
+    //-->sends post to "https://sentim-api.herokuapp.com/api/v1/".
+    //-->gets response.
+    //RETURNS : result {result:{type:"type",polarity:"polarity"}}.
+    //the type can be: positive, nuetral,negative.
+    //polarity is  a decimal number between -1 and 1 .
+
     let data = { text: text };
     const response = await fetch("https://sentim-api.herokuapp.com/api/v1/", {
         method: "POST",
@@ -11,6 +40,7 @@ async function sentimator(text) {
         body: JSON.stringify(data),
     });
     if (response.status > 400) {
+        //response is having a kind of problem.
         document.getElementById("resultBar").innerText =
             response.status + ":" + response.statusText;
     }
@@ -22,29 +52,33 @@ async function sentimator(text) {
         return null;
     }
 }
-function loadingPage() {
+
+async function randomSentence() {
+    //-->sends "get" to "https://api.isevenapi.xyz/api/iseven/5".
+    //-->gets json format Obj.
+    //RETURNS {ad:"random sentence"}:
+
+    let response = await fetch("https://api.isevenapi.xyz/api/iseven/5");
+    try {
+        return response.json();
+    } catch {
+        return null;
+    }
+}
+function toogleLoadingPage() {
+    //toogle the packmen loader be'ing hide,
+    //toogle the inputContent be'ing shown,
+
     document.getElementById("loading").classList.toggle("hide");
     document.getElementById("inputContent").classList.toggle("hide");
 }
 
-async function getHttp() {
-    loadingPage();
-    const text = document.getElementById("inputBar").value;
-    const result = await sentimator(text);
-    if (result !== null) {
-        displayResultInDom(text, result);
-    }
-    if (document.getElementById("toRandom").checked) {
-        let random = await isEven();
-        document.getElementById("inputBar").value = random.ad;
-    }
-    loadingPage();
-}
-
 async function displayResultInDom(text, result) {
+    //gets the results ,and displaying it on dom.
+
     let body = document.getElementById("body");
     let sentence = document.getElementById("sentence");
-    let polarity = (await (result["result"].polarity + 1)) / 2;
+    let polarity = (await (result["result"].polarity + 1)) / 2; //gets polatiry(-1-->1) turns it into (0-->1)
     let gauge = new Gauge(document.getElementById("gauge"));
     body.style.backgroundColor = getColorFromPolarity(polarity);
     gauge.value(polarity);
@@ -52,26 +86,25 @@ async function displayResultInDom(text, result) {
 }
 function getColorFromPolarity(polarity) {
     //polatiry is a number between 0-1.
-    const r = (1 - polarity) * 255;
-    const g = polarity * 255;
+    const r = (1 - polarity) * 255; //0 on polarity =1 ,255 on polarity=0
+    const g = polarity * 255; //255 on polarity =1 ,0 on polarity=0
     const b = -0.0093 * g ** 2 + 2.36 * g; // this is a parabula , b(g), that have 3 known points.{0(0),150(127.5),0(255)}
     return `rgb(${r},${g},${b})`;
 }
-async function isEven() {
-    let res = await fetch("https://api.isevenapi.xyz/api/iseven/5");
-    return res.json();
-}
-document.getElementById("btn").addEventListener("click", getHttp);
-document.getElementById("btn").addEventListener("mouseenter", highLight);
+
+//Visibile mouse enter to send button
 
 function highLight() {
     document.getElementById("btn").classList.add("highLighted");
-    document.getElementById("btn").addEventListener("mouseleave", normal);
+    document.getElementById("btn").addEventListener("mouseleave", backToNormal);
 }
-function normal() {
+function backToNormal() {
     document.getElementById("btn").classList.remove("highLighted");
 }
-function inianalizing() {
+
+//nitialization
+
+function nitialization() {
     let gauge = new Gauge(document.getElementById("gauge"));
     gauge.value(0.5);
     body.style.backgroundColor = getColorFromPolarity(0.5);

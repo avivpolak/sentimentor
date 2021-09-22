@@ -43,9 +43,21 @@ h1 {
     align-items: flex-start;
 }
 #inputContent {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 600px;
+}
+#sentence {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+#loading {
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 150px;
 }
 
 /* GAUGE   (I DIDNT WROTE THAT CODE)*/
@@ -321,7 +333,7 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* THE LOADING PACKMEN */
+/* THE LOADING PACKMEN --> (not my code) */
 
 @keyframes packmen-1 {
     0% {

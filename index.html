@@ -10,109 +10,54 @@
         <title>Document</title>
     </head>
     <body id="body">
-            
-                <h1>
-                    Give me a sentence, and I'll tell you how you feel:
-                </h1>
-                <div id="resultBar">results here!</div>
-                <div class="gauge gauge--liveupdate" id="gauge">
-                    <div class="gauge__container">
-                        <div class="gauge__marker"></div>
-                        <div class="gauge__background"></div>
-                        <div class="gauge__center"></div>
-                        <div class="gauge__data"></div>
-                        <div class="gauge__needle"></div>
-                    </div>
-                    <div class="gauge__labels mdl-typography__headline">
-                        <span class="gauge__label--low">bad</span>
-                        <span class="gauge__label--spacer"></span>
-                        <span class="gauge__label--high">good</span>
-                    </div>
+        <h1>Give me a sentence, and I'll tell you how you feel:</h1>
+        <div id="resultBar">results here!</div>
+        <div class="gauge gauge--liveupdate" id="gauge">
+            <div class="gauge__container">
+                <div class="gauge__marker"></div>
+                <div class="gauge__background"></div>
+                <div class="gauge__center"></div>
+                <div class="gauge__data"></div>
+                <div class="gauge__needle"></div>
+            </div>
+            <div class="gauge__labels mdl-typography__headline">
+                <span class="gauge__label--low">bad</span>
+                <span class="gauge__label--spacer"></span>
+                <span class="gauge__label--high">good</span>
+            </div>
+        </div>
+        <div id="loading" class="hide">
+            <div class="packmen">
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
-
-                <div id="loading" class ="hide">
-                    <div style="margin-left:auto;margin-right:auto; width:150px;height:150px;">
-                        <div class="packmen">
-                            <div><div></div><div></div><div></div></div>
-                            <div><div></div><div></div><div></div></div>
-                        </div>
-                    </div>
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
-                <div id="inputContent">
-                    <div>
-                        <div>
-
-
-
-        
-                        <span>Enter sentence here:</span>
-                        
-                        <label style="float: right;" class="switch">
-                            <input style="float: right;" id="toRandom" type="checkbox" />
-                            <span class="slider round"></span>
-                        </label>
-                        <label style="float: right;">Random:</label>
-                    
-
-                        <textarea
-                            type="text"
-                            id="inputBar"
-                            placeholder="your sentence here!"
-                        >
-                        </textarea>    
-                                <div>
+            </div>
+        </div>
+        <div id="inputContent">
+            <div>
+                <span>Enter sentence here:</span>
+                <label style="float: right" class="switch">
+                    <input style="float: right" id="toRandom" type="checkbox" />
+                    <span class="slider round"></span>
+                </label>
+                <label style="float: right">Random:</label>
+                <textarea
+                    type="text"
+                    id="inputBar"
+                    placeholder="your sentence here!"
+                ></textarea>
+                <div>
                     <button id="btn">send</button>
-        
-                    </div>
-                    
-                    </div>
-                    <p id="sentence" style="
-                    display:flex;
-                    justify-content: center;
-                    align-items: flex-end;"></p></div>
-
+                </div>
+            </div>
+            <p id="sentence"></p>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
     </body>
 </html>
