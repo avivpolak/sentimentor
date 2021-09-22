@@ -26,9 +26,26 @@ div button {
     font-size: 30px;
     padding: 2% 13%;
 }
-
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.hide {
+    display: none;
+}
 .highLighted {
     background-color: rgb(172, 88, 58);
+}
+#resultBar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+#inputContent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 /* GAUGE   (I DIDNT WROTE THAT CODE)*/
@@ -302,4 +319,103 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* THE LOADING PACKMEN */
+
+@keyframes packmen-1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes packmen-2 {
+    0% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(225deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+.packmen > div:nth-child(2) {
+    transform: translate(-15px, 0);
+}
+.packmen > div:nth-child(2) div {
+    position: absolute;
+    top: 40.8px;
+    left: 40.8px;
+    width: 122.4px;
+    height: 61.2px;
+    border-radius: 122.4px 122.4px 0 0;
+    background: #f8b26a;
+    animation: packmen-1 1s linear infinite;
+    transform-origin: 61.2px 61.2px;
+}
+.packmen > div:nth-child(2) div:nth-child(2) {
+    animation: packmen-2 1s linear infinite;
+}
+.packmen > div:nth-child(2) div:nth-child(3) {
+    transform: rotate(-90deg);
+    animation: none;
+}
+@keyframes packmen-3 {
+    0% {
+        transform: translate(193.8px, 0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(71.4px, 0);
+        opacity: 1;
+    }
+}
+.packmen > div:nth-child(1) {
+    display: block;
+}
+.packmen > div:nth-child(1) div {
+    position: absolute;
+    top: 93.84px;
+    left: -8.16px;
+    width: 16.32px;
+    height: 16.32px;
+    border-radius: 50%;
+    background: #e15b64;
+    animation: packmen-3 1s linear infinite;
+}
+.packmen > div:nth-child(1) div:nth-child(1) {
+    animation-delay: -0.67s;
+}
+.packmen > div:nth-child(1) div:nth-child(2) {
+    animation-delay: -0.33s;
+}
+.packmen > div:nth-child(1) div:nth-child(3) {
+    animation-delay: 0s;
+}
+.loading {
+    width: 204px;
+    height: 204px;
+    display: inline-block;
+    overflow: hidden;
+    background: #f1f2f3;
+}
+.packmen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+.packmen div {
+    box-sizing: content-box;
 }

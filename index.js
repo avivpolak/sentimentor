@@ -1,7 +1,4 @@
-
-
-inianalizing()
-
+inianalizing();
 
 async function sentimator(text) {
     let data = { text: text };
@@ -13,48 +10,57 @@ async function sentimator(text) {
         },
         body: JSON.stringify(data),
     });
-    if (response.status > 400){
-        document.getElementById("resultBar").innerText =response.status+":"+ response.statusText;
+    if (response.status > 400) {
+        document.getElementById("resultBar").innerText =
+            response.status + ":" + response.statusText;
     }
     try {
         const result = await response.json();
-        document.getElementById("resultBar").innerText =result.result.type
+        document.getElementById("resultBar").innerText = result.result.type;
         return result;
     } catch {
         return null;
     }
 }
-async function isEven() {
-    let res = await fetch("https://api.isevenapi.xyz/api/iseven/5");
-    return res.json();
+function loadingPage() {
+    document.getElementById("loading").classList.toggle("hide");
+    document.getElementById("inputContent").classList.toggle("hide");
 }
 
 async function getHttp() {
+    loadingPage();
     const text = document.getElementById("inputBar").value;
     const result = await sentimator(text);
     if (result !== null) {
-        displayResultInDom(result);
+        displayResultInDom(text, result);
     }
     if (document.getElementById("toRandom").checked) {
         let random = await isEven();
         document.getElementById("inputBar").value = random.ad;
     }
+    loadingPage();
 }
 
-async function displayResultInDom(result) {
+async function displayResultInDom(text, result) {
     let body = document.getElementById("body");
+    let sentence = document.getElementById("sentence");
     let polarity = (await (result["result"].polarity + 1)) / 2;
     let gauge = new Gauge(document.getElementById("gauge"));
     body.style.backgroundColor = getColorFromPolarity(polarity);
     gauge.value(polarity);
+    sentence.innerText = text;
 }
-function getColorFromPolarity(polarity) { //polatiry is a number between 0-1.
+function getColorFromPolarity(polarity) {
+    //polatiry is a number between 0-1.
     const r = (1 - polarity) * 255;
     const g = polarity * 255;
-    const b = -0.0093 * g * g + 2.36 * g; // this is a parabula , b(g), that have 3 known points.{0(0),150(127.5),0(255)}
+    const b = -0.0093 * g ** 2 + 2.36 * g; // this is a parabula , b(g), that have 3 known points.{0(0),150(127.5),0(255)}
     return `rgb(${r},${g},${b})`;
 }
-
+async function isEven() {
+    let res = await fetch("https://api.isevenapi.xyz/api/iseven/5");
+    return res.json();
+}
 document.getElementById("btn").addEventListener("click", getHttp);
 document.getElementById("btn").addEventListener("mouseenter", highLight);
 
@@ -65,25 +71,11 @@ function highLight() {
 function normal() {
     document.getElementById("btn").classList.remove("highLighted");
 }
-function inianalizing(){
-let gauge = new Gauge(document.getElementById("gauge"));
-gauge.value(0.5);
-body.style.backgroundColor = getColorFromPolarity(0.5);
+function inianalizing() {
+    let gauge = new Gauge(document.getElementById("gauge"));
+    gauge.value(0.5);
+    body.style.backgroundColor = getColorFromPolarity(0.5);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // The Gauge-----> i did not wrote this code
 
