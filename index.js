@@ -65,6 +65,7 @@ async function randomSentence() {
         return null;
     }
 }
+
 function toogleLoadingPage() {
     //toogle the packmen loader be'ing hide,
     //toogle the inputContent be'ing shown,
